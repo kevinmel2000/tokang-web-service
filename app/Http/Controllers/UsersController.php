@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Model\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Hashing\BcryptHasher;
 
 class UsersController extends Controller
 {
-    public function register(Request $request) {
-        /*$request['api_token'] = str_random(60);
-        $request['password'] = app('hash')->make($request['password']);
-        $user = User::create($request->all());*/
-
+    public function register(Request $request) {       
         $hasher = app()->make('hash');
 
         $email = $request->input('email');
@@ -51,7 +47,7 @@ class UsersController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return response()->json('Removed Sucessfully');
+        return response()->json('User Removed Sucessfully');
     }
 
     public function view($id) {

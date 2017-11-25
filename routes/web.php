@@ -24,4 +24,19 @@ $router->group(['prefix'=>'api/v1'], function($router){
         $router->delete('delete/{id}', 'UsersController@delete');
         $router->get('index', 'UsersController@index');
     });
+
+    $router->group(['prefix' => 'users_address', 'middleware'=>'auth'], function($router){
+        $router->post('add', 'UserAddressController@add');
+        $router->get('view/{id}', 'UserAddressController@view');
+        $router->put('edit/{id}', 'UserAddressController@edit');
+        $router->delete('delete/{id}', 'UserAddressController@delete');
+        $router->get('index', 'UsersAddressController@index');
+    });
+
+    $router->group(['prefix' => 'customers', 'middleware'=>'auth'], function($router){
+        $router->post('add', 'CustomersController@add');
+        $router->get('view/{id}', 'CustomersController@view');
+        $router->delete('delete/{id}', 'CustomersController@delete');
+        $router->get('index', 'CustomersController@index');
+    });
 });
